@@ -1,0 +1,58 @@
+.introduction {
+    padding-top: 50px;
+    display: flex;
+    background-color: #ffddbb;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    .how-to {
+        padding-bottom: 100px;
+        margin-left: 15%;
+        max-width: 80%;
+
+        h1 {
+            font-size: 60px;
+        }
+
+        h2 {
+            padding-top: 0;
+
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 25px;
+        }
+    }
+
+    .image-container {
+        min-width: 30%;
+        // height: 350px;
+        flex: 1 1 auto;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        margin: 0;
+        // margin: 0 7.5px 15px;
+        overflow: hidden;
+        
+
+        .kobe-image {
+            flex: 1.53153153153;
+            height: 333px;
+            padding: 0;
+            margin: 0;
+            display: block;
+            float:left;
+            overflow: hidden;
+            // max-width: 100%;
+            // inline-size: min-content;
+        }
+    }
+
+
+    
+}
