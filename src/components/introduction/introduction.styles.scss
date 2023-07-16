@@ -1,19 +1,20 @@
 .introduction {
-    padding-top: 50px;
+    padding-top: 20px;
     display: flex;
-    background-color: #ffddbb;
+    // background-color: #ffddbb;
+    background-color: black;
     width: 100%;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
 
     .how-to {
-        padding-bottom: 100px;
-        margin-left: 15%;
+        padding-bottom: 130px;
+        margin-left: 12%;
         max-width: 80%;
 
         h1 {
-            font-size: 60px;
+            font-size: 70px;
         }
 
         h2 {
@@ -34,8 +35,9 @@
         flex: 1 1 auto;
         display: flex;
         align-items: flex-end;
-        justify-content: flex-end;
-        margin: 0;
+        justify-content: center;
+        margin-right: 2%;
+        // margin: 0;
         // margin: 0 7.5px 15px;
         overflow: hidden;
         
@@ -43,10 +45,10 @@
         .kobe-image {
             flex: 1.53153153153;
             height: 333px;
-            padding: 0;
-            margin: 0;
+            // padding-right: 75%;
+            // margin-right: 100%;
             display: block;
-            float:left;
+            float: left;
             overflow: hidden;
             // max-width: 100%;
             // inline-size: min-content;
