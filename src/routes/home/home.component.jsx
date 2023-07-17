@@ -4,9 +4,9 @@ import Guide from '../../components/guide/guide.component'
 import Introduction from '../../components/introduction/introduction.component'
 import QueryFields from '../../components/query-fields/query-fields.component'
 
-import erving from '../../assets/erving.jpg'
+import magic from '../../assets/magic.png'
 import lebron from '../../assets/lebron.jpg'
-import giannis from '../../assets/giannis.jpeg'
+import steph from '../../assets/steph.png'
 
 import './home.styles.scss'
 
@@ -14,9 +14,9 @@ const Home = () => {
   const directions = [
     {
       id: 1,
-      className: 'Erving',
-      title: 'Playoff data since 1980.',
-      imageUrl: erving
+      className: 'Magic',
+      title: 'Playoff data since 1980',
+      imageUrl: magic
     },
     {
       id: 2,
@@ -26,9 +26,9 @@ const Home = () => {
     },
     {
       id: 3,
-      className: 'Giannis',
+      className: 'Steph',
       title: 'Adjusted for Pace and Defense',
-      imageUrl: giannis
+      imageUrl: steph
     }
   ]
   return (
