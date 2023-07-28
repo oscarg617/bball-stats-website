@@ -6,7 +6,7 @@ const GuideItem = ({ direction }) => {
   return (
     <div className={`guide-item-container ${className}`}>
       <div className={`guide-item-body ${className}`}>
-        <h2>{title}</h2>
+        <h3>{title}</h3>
       </div>
       <div className='image-container'>
         <div
