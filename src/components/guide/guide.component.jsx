@@ -1,4 +1,3 @@
-import { Fragment } from 'react'
 import GuideItem from '../guide-item/guide-item.component'
 
 import './guide.styles.scss'
