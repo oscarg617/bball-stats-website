@@ -2,12 +2,11 @@
 
 body {
   margin: 0;
-  font-family: 'Open Sans Condensed', sans-serif;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 * {
@@ -15,8 +14,8 @@ code {
 }
 
 
-a, h1, h2, p {
+a, h1, h2, h3, p {
   text-decoration: none;
   color: white;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }  
