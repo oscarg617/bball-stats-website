@@ -2,29 +2,29 @@ import { Fragment } from 'react'
 
 import Guide from '../../components/guide/guide.component'
 import Introduction from '../../components/introduction/introduction.component'
-import QueryFields from '../../components/query-fields/query-fields.component'
+import Wave from '../../components/wave/wave.component'
+import Stats from '../../components/stats/stats.component'
 
-import magic from '../../assets/magic.png'
+import magic from '../../assets/magic2.png'
 import lebron from '../../assets/lebron.jpg'
-import steph from '../../assets/steph.png'
-import wave from '../../assets/pattern.svg'
-import wave2 from '../../assets/pattern2.svg'
+import steph from '../../assets/steph3.png'
+import introWave from '../../assets/intro-wave.svg'
+import guideWave from '../../assets/guide-wave.svg'
 
 import './home.styles.scss'
-import StatQueries from '../../components/stat-queries/stat-queries.component'
 
 const Home = () => {
   const directions = [
     {
       id: 1,
       className: 'Magic',
-      title: 'Playoff data since 1980',
+      title: 'Query Playoff Stats since 1980',
       imageUrl: magic
     },
     {
       id: 2,
       className: 'Steph',
-      title: 'Adjusted for Pace and Defense',
+      title: 'Adjust Stats for Pace and Defense',
       imageUrl: steph
     },
     {
@@ -34,17 +34,51 @@ const Home = () => {
       imageUrl: lebron
     }
   ]
+
+  const tables = [
+    {
+      id: 1,
+      boxScoreStats: [
+        {
+          id: 1,
+          name: 'Points'
+        }
+      ],
+      statTypes: [
+        {
+          id: 1,
+          name: 'Per Game',
+          boxScores: [
+            {
+              id: 1,
+              value: 30
+            }
+          ]
+        },
+        {
+          id: 2,
+          name: 'Per 100',
+          boxScores: [
+            {
+              id: 1,
+              value: 46
+            }
+          ]
+        }
+      ]
+    }
+  ]
+
   return (
     <Fragment>
       <Introduction />
-      <div className='wave-container'>
-        <img src={wave} alt='Wave'></img>
-      </div>
+      <Wave wave={introWave} />
+
       <Guide directions={directions} />
-      <div className='wave-container'>
-        <img src={wave2} alt='Wave'></img>
-      </div>
-      <StatQueries />
+      <Wave wave={guideWave} />
+
+      <Stats />
+      <div className='footer'></div>
     </Fragment>
   )
 }

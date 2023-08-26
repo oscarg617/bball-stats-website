@@ -1,6 +1,5 @@
-import GuideItem from '../guide-item/guide-item.component'
-
 import './guide.styles.scss'
+import GuideItem from '../guide-item/guide-item.component'
 
 const Guide = ({ directions }) => {
   return (

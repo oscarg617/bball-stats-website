@@ -1,0 +1,84 @@
+.stats-container {
+    padding-left: 4vw;
+    padding-right: 4vw;
+
+    .queries-container {
+
+        .query-fields {
+            margin-bottom: 300px;
+    
+            .search-bars-container {
+                min-width: 200px;
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: row;
+                // justify-content: space-around;
+                align-content: center;
+                overflow: hidden;
+
+                .search-bar-container {
+                    float: left;
+                    width: 325px;
+                    // padding-bottom: 125px;
+
+                    .select {
+                        padding-bottom: 10px;
+                    }
+
+                    h3 {
+                        padding: 0;
+                        margin-bottom: 0.4rem;
+                        font-weight: 575;
+                        color: black;
+                    }
+                    
+                }
+
+                .player-name {
+                    padding-left: 0.5%;
+                    padding-right: 0.5%;
+                    width: 360px;
+                }
+
+                .start-year {
+                    padding-left: 1.6%;
+                    padding-right: 1.6%;
+                    width: 180px;
+                }
+
+                .end-year {
+                    padding-left: 1.6%;
+                    padding-right: 1.6%;
+                    width: 180px;
+                }
+
+                .min-def-rtg {
+                    padding-left: 1.6%;
+                    padding-right: 1.6%;
+                    width: 180px;
+                }
+
+                .max-def-rtg {
+                    padding-left: 1.6%;
+                    padding-right: 1.6%;
+                    width: 180px;
+                }
+    
+            }
+        }
+    
+        .stat-tables {
+            padding-left: 0.8%;
+            padding-right: 0.8%;
+    
+            h2 {
+                color: black;
+            }
+        }
+
+
+
+    }
+
+}
