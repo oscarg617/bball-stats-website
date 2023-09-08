@@ -11,8 +11,8 @@ function App () {
     <Routes>
       <Route path='/' element={<Navigation />}>
         <Route index element={<Home />}></Route>
-        <Route path='glossary' element={<Glossary />}></Route>
-        <Route path='support-me' element={<SupportMe />}></Route>
+        {/* <Route path='glossary' element={<Glossary />}></Route>
+        <Route path='support-me' element={<SupportMe />}></Route> */}
       </Route>
     </Routes>
   )
