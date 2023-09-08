@@ -12,12 +12,12 @@ const Navigation = () => {
           <LadderLogo className='logo' />
         </Link>
         <div className='nav-links-container'>
-          <Link className='glossary' to='/glossary'>
+          {/* <Link className='glossary' to='/glossary'>
             Stat Glossary
           </Link>
           <Link className='support-me' to='/support-me'>
             Support Me
-          </Link>
+          </Link> */}
         </div>
       </div>
       <Outlet />
