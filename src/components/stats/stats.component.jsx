@@ -6,17 +6,75 @@ import SearchBar from '../search-bar/search-bar.component'
 
 import players from '../../assets/players.json'
 import years from '../../assets/years.json'
+import drtg from '../../assets/drtg.json'
 import ValueSelect from '../value-select/value-select.component'
 
-const Stats = () => {
-  const [data, setData] = useState(null)
+const Stats = (props) => {
+  const [data, setData] = useState()
+  const [player, setPlayer] = useState()
+  const [startYear, setStartYear] = useState()
+  const [endYear, setEndYear] = useState()
+  const [minDRTG, setMinDRTG] = useState()
+  const [maxDRTG, setMaxDRTG] = useState()
+  let [err, setErr] = useState(null);
 
-  useEffect(() => {
-    fetch('https://6azm0mv9p1.execute-api.us-east-2.amazonaws.com/test/drtg')
-      .then(response => response.json())
-      .then(json => setData(json))
-      .catch(error => console.error(error))
-  }, [])
+  const handlePlayer = val => {
+    if (val == null) {
+      setPlayer(null);
+    } else {
+      console.log(val.value)
+      setPlayer(val.value)
+      console.log(player)
+    }
+  }
+
+  const handleStartYear = val => {
+    if (val == null) {
+      setStartYear(null);
+    } else {
+      console.log(val.value)
+      setStartYear(val.value)
+      console.log(startYear)
+    }
+  }
+
+  const handleEndYear = val => {
+    if (val == null) {
+      setEndYear(null);
+    } else {
+      console.log(val.value)
+      setEndYear(val.value)
+      console.log(endYear)
+    }
+  }
+
+  const handleMinDRTG = val => {
+    if (val == null) {
+      setMinDRTG(null);
+    } else {
+      console.log(val.value)
+      setMinDRTG(val.value)
+      console.log(minDRTG)
+    }
+  }
+
+  const handleMaxDRTG = val => {
+    if (val == null) {
+      setMaxDRTG(null);
+    } else {
+      console.log(val.value)
+      console.log(player)
+      setMaxDRTG(val.value)
+      console.log(maxDRTG)
+    }
+  }
+
+  // useEffect(() => {
+  //   fetch('https://6azm0mv9p1.execute-api.us-east-2.amazonaws.com/test/drtg')
+  //     .then(response => response.json())
+  //     .then(json => setData(json))
+  //     .catch(error => console.error(error))
+  // }, [])
 
   const textFieldsList = [
     [
@@ -25,7 +83,8 @@ const Stats = () => {
         title: "Player's Name",
         placeholder: 'e.g. Tim Duncan',
         options: players,
-        charLength: 3
+        charLength: 3,
+        handleInput: handlePlayer
       }
     ]
   ]
@@ -37,14 +96,16 @@ const Stats = () => {
         title: 'Start Year',
         placeholder: 'e.g. 1999',
         options: years,
-        charLength: 0
+        charLength: 0,
+        handleInput: handleStartYear
       },
       {
         name: 'end-year',
         title: 'End Year',
         placeholder: 'e.g. 2003',
         options: years,
-        charLength: 0
+        charLength: 0,
+        handleInput: handleEndYear
       }
     ],
     [
@@ -52,16 +113,71 @@ const Stats = () => {
         name: 'min-def-rtg',
         title: 'Min Def-Rtg',
         placeholder: 'e.g. 99.0',
-        options: data
+        options: drtg,
+        handleInput: handleMinDRTG
       },
       {
         name: 'max-def-rtg',
         title: 'Max Def-Rtg',
         placeholder: 'e.g. 103.5',
-        options: data
+        options: drtg,
+        handleInput: handleMaxDRTG
       }
     ]
   ]
+
+  const getData = () => {
+    console.log(data)
+    console.log("Reheheh")
+    if (player == null | startYear == null | endYear == null | minDRTG == null | maxDRTG == null) {
+      return
+    }
+    if (startYear > endYear | minDRTG > maxDRTG) {
+      return
+    }
+
+    const body = JSON.stringify({
+      'name': player,
+      'start_year': startYear,
+      'end_year': endYear,
+      'min_def_rtg': minDRTG,
+      'max_def_rtg': maxDRTG
+    });
+
+    fetch('https://6azm0mv9p1.execute-api.us-east-2.amazonaws.com/test', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': '2Pg21FTlcK3JrmTH5q3ib7h68PIk5QAU9tF1Gh4Z',
+      },
+      body: body,
+    })
+        .then(response => {
+          if (response.status == 404) {
+            alert("Could not find playoff logs for this player. We are working on adding more players.")
+            throw new Error("Not found!");
+          }
+          return response.text()
+          
+        })
+
+        // .then(text => console.log(text))
+        .then(string => {
+          console.log(string);
+          console.log(body);
+          return JSON.parse(string);
+        })
+        .then(json => {
+          console.log(json);
+          console.log(body);
+          props.sendToTable(json);
+        })
+        .catch(err => {
+          console.log(err);
+          props.sendToTable([null])
+        })
+
+  }
 
   return (
     <div className='stats-container'>
@@ -75,6 +191,7 @@ const Stats = () => {
                     <div>
                       <h3>{textField.title}</h3>
                       <SearchBar
+                        handleInput={textField.handleInput}
                         options={textField.options}
                         placeholder={textField.placeholder}
                         charLength={textField.charLength}
@@ -91,6 +208,7 @@ const Stats = () => {
                     <div className='select'>
                       <h3>{numberField.title}</h3>
                       <ValueSelect
+                        handleInput={numberField.handleInput}
                         options={numberField.options}
                         placeholder={numberField.placeholder}
                       />
@@ -101,8 +219,10 @@ const Stats = () => {
             ))}
           </div>
         </div>
+        <div className='button-container' >
+          <button className='button' onClick={getData}>Get Stats</button>
+        </div>
         <div className='stat-tables'>
-          <h2>Hello</h2>
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@ import './value-select.styles.scss'
 
 import Select from 'react-select'
 
-const ValueSelect = ({ options, placeholder }) => {
+const ValueSelect = ({ options, placeholder, handleInput }) => {
   const _customStyles = {
     control: (base, state) => ({
       ...base,
@@ -24,6 +24,10 @@ const ValueSelect = ({ options, placeholder }) => {
     })
   }
 
+  const selectChange = val => {
+    handleInput(val);
+  }
+
   return (
     <Select
       styles={_customStyles}
@@ -31,6 +35,7 @@ const ValueSelect = ({ options, placeholder }) => {
       placeholder=''
       menuPosition='fixed'
       menuPlacement='auto'
+      onChange={handleInput}
     />
   )
 }

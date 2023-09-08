@@ -1,9 +1,11 @@
-import { Fragment } from 'react'
+import { Fragment, useState, React } from 'react'
 
 import Guide from '../../components/guide/guide.component'
 import Introduction from '../../components/introduction/introduction.component'
 import Wave from '../../components/wave/wave.component'
 import Stats from '../../components/stats/stats.component'
+import Table from '../../components/table/table.component'
+import TableContainer from '../../components/table-container/table-container.component'
 
 import magic from '../../assets/magic2.png'
 import lebron from '../../assets/lebron.jpg'
@@ -14,6 +16,15 @@ import guideWave from '../../assets/guide-wave.svg'
 import './home.styles.scss'
 
 const Home = () => {
+
+  const [stats , setStats] = useState([null])
+  const getStats = (val) => {
+    console.log(stats)
+    console.log(...val)
+    setStats(val);
+    console.log(stats)
+  }
+
   const directions = [
     {
       id: 1,
@@ -77,8 +88,9 @@ const Home = () => {
       <Guide directions={directions} />
       <Wave wave={guideWave} />
 
-      <Stats />
-      <div className='footer'></div>
+      <Stats sendToTable={getStats} />
+      <TableContainer stats={stats} />
+      <div className='footer' ></div>
     </Fragment>
   )
 }

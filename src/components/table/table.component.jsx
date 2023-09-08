@@ -9,20 +9,13 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 
-function createData (name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein }
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9)
-]
-
 const BasicTable = ({ table }) => {
+  console.log(table)
+  if (table == null) return
   const { boxScoreStats, statTypes } = table
+  console.log(boxScoreStats)
+  console.log(statTypes)
+
   return (
     <TableContainer component={Paper}>
       <Table aria-label='simple table'>
@@ -44,7 +37,7 @@ const BasicTable = ({ table }) => {
                 {statType.name}
               </TableCell>
               {statType.boxScores.map(boxScore => (
-                <TableCell align='right'>{boxScore.value}</TableCell>
+                <TableCell align='right'>{Math.round(boxScore.value * 10) / 10}</TableCell>
               ))}
             </TableRow>
           ))}

@@ -1,9 +1,12 @@
 import AsyncSelect from 'react-select/async'
+import React, { useState, useEffect } from 'react'
 
-const SearchBar = ({ options, placeholder, charLength }) => {
+const SearchBar = ({ options, placeholder, charLength, handleInput }) => {
+  const [data, setData] = useState(null)
+
   const loadOptions = (searchValue, callback) => {
     var filteredOptions = []
-    if (searchValue.length > charLength) {
+    if (searchValue.length >= charLength) {
       filteredOptions = options.filter(option =>
         option.label.toLowerCase().includes(searchValue.toLowerCase())
       )
@@ -12,8 +15,12 @@ const SearchBar = ({ options, placeholder, charLength }) => {
   }
 
   const noOptions = () => {
-    return 'Type to show players.'
+    return `Type at least ${charLength} characters.`
   }
+
+  const textChange = inputValue => {
+    handleInput(inputValue)
+  };
 
   return (
     <AsyncSelect
@@ -24,6 +31,8 @@ const SearchBar = ({ options, placeholder, charLength }) => {
       menuPlacement='auto'
       maxMenuHeight={100}
       noOptionsMessage={noOptions}
+      onChange={textChange}
+      
     />
   )
 }
