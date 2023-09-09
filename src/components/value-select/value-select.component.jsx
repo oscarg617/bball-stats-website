@@ -29,6 +29,10 @@ const ValueSelect = ({ options, placeholder, handleInput }) => {
     handleInput(val);
   }
 
+  const noOptions = () => {
+    return 'Choose a player first.'
+  }
+
   return (
     <Select
       styles={_customStyles}
@@ -38,6 +42,7 @@ const ValueSelect = ({ options, placeholder, handleInput }) => {
       menuPosition='fixed'
       menuPlacement='auto'
       onChange={handleInput}
+      noOptionsMessage={noOptions}
     />
   )
 }

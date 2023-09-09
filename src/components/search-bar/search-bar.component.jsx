@@ -1,7 +1,12 @@
 import AsyncSelect from 'react-select/async'
 import React, { useState, useEffect } from 'react'
+import axios from "axios"
 
-const SearchBar = ({ options, placeholder, charLength, handleInput }) => {
+axios.defaults.headers.post['x-api-key'] = '2Pg21FTlcK3JrmTH5q3ib7h68PIk5QAU9tF1Gh4Z'
+axios.defaults.headers.post['Content-Type'] = 'application/json'
+
+
+const SearchBar = ({ options, placeholder, charLength, handleInput, handleOptions }) => {
   const [data, setData] = useState(null)
 
   const loadOptions = (searchValue, callback) => {
@@ -14,17 +19,22 @@ const SearchBar = ({ options, placeholder, charLength, handleInput }) => {
     }
   }
 
+
+
   const noOptions = () => {
     return `Type at least ${charLength} characters.`
   }
 
   const textChange = inputValue => {
+    console.log("inputValue", inputValue)
     handleInput(inputValue)
+    handleOptions(inputValue)
   };
 
   return (
     <AsyncSelect
       isClearable
+      // options={options}
       loadOptions={loadOptions}
       placeholder=''
       menuPosition='fixed'

@@ -18,6 +18,9 @@ const Stats = (props) => {
   const [maxDRTG, setMaxDRTG] = useState()
   let [err, setErr] = useState(null);
 
+  const[yearOptions, setYearOptions] = useState([])
+  const[drtgOptions, setDrtgOptions] = useState([])
+
   const handlePlayer = val => {
     if (val == null) {
       setPlayer(null);
@@ -69,6 +72,29 @@ const Stats = (props) => {
     }
   }
 
+  const handleOptions = val => {
+    if (val == null) {
+      setDrtgOptions([]);
+      setYearOptions([]);
+    } else {
+      const newDrtg = []
+      for (var i = val.drtg.min_def_rtg, l = val.drtg.max_def_rtg; i < l; i += 0.1) {
+        const dict = {"label": (Math.round(i * 10) / 10).toString(), "value": Math.round(i * 10) / 10};
+        // console.log(dict)
+        newDrtg.push(dict);
+      }
+      setDrtgOptions(newDrtg);
+
+      const newYears = []
+      for (var i = val.years.start_year, l = val.years.end_year; i < l; i += 1) {
+        const dict = {"label": i.toString(), "value": i};
+        // console.log(dict)
+        newYears.push(dict);
+      }
+      setYearOptions(newYears);
+    }
+  }
+
   // useEffect(() => {
   //   fetch('https://6azm0mv9p1.execute-api.us-east-2.amazonaws.com/test/drtg')
   //     .then(response => response.json())
@@ -95,7 +121,7 @@ const Stats = (props) => {
         name: 'start-year',
         title: 'Start Year',
         placeholder: 'e.g. 1999',
-        options: years,
+        options: yearOptions,
         charLength: 0,
         handleInput: handleStartYear
       },
@@ -103,7 +129,7 @@ const Stats = (props) => {
         name: 'end-year',
         title: 'End Year',
         placeholder: 'e.g. 2003',
-        options: years,
+        options: yearOptions,
         charLength: 0,
         handleInput: handleEndYear
       }
@@ -113,14 +139,14 @@ const Stats = (props) => {
         name: 'min-def-rtg',
         title: 'Min Def-Rtg',
         placeholder: 'e.g. 99.0',
-        options: drtg,
+        options: drtgOptions,
         handleInput: handleMinDRTG
       },
       {
         name: 'max-def-rtg',
         title: 'Max Def-Rtg',
         placeholder: 'e.g. 103.5',
-        options: drtg,
+        options: drtgOptions,
         handleInput: handleMaxDRTG
       }
     ]
@@ -192,6 +218,7 @@ const Stats = (props) => {
                       <h3>{textField.title}</h3>
                       <SearchBar
                         handleInput={textField.handleInput}
+                        handleOptions={handleOptions}
                         options={textField.options}
                         placeholder={textField.placeholder}
                         charLength={textField.charLength}
