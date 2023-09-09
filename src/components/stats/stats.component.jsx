@@ -9,6 +9,10 @@ import years from '../../assets/years.json'
 import drtg from '../../assets/drtg.json'
 import ValueSelect from '../value-select/value-select.component'
 
+import { ReactComponent as Loader } from '../../assets/spinner.svg'
+
+
+
 const Stats = (props) => {
   const [data, setData] = useState()
   const [player, setPlayer] = useState()
@@ -20,6 +24,8 @@ const Stats = (props) => {
 
   const[yearOptions, setYearOptions] = useState([])
   const[drtgOptions, setDrtgOptions] = useState([])
+
+  const [loading, setLoading] = useState(false);
 
   const handlePlayer = val => {
     if (val == null) {
@@ -153,6 +159,7 @@ const Stats = (props) => {
   ]
 
   const getData = () => {
+    setLoading(true);
     console.log(data)
     console.log("Reheheh")
     if (player == null | startYear == null | endYear == null | minDRTG == null | maxDRTG == null) {
@@ -202,8 +209,18 @@ const Stats = (props) => {
           console.log(err);
           props.sendToTable([null])
         })
+        .finally(() => {setLoading(false)})
 
   }
+
+  const renderLoader = () => {
+    if (loading) {
+      return (<div className="loader-container">
+              <div className="spinner"></div>
+            </div>)
+    }
+  }
+
 
   return (
     <div className='stats-container'>
@@ -247,7 +264,11 @@ const Stats = (props) => {
           </div>
         </div>
         <div className='button-container' >
-          <button className='button' onClick={getData}>Get Stats</button>
+
+          {/* <div className='loader' >{renderLoader()}</div> */}
+          <button className='button' onClick={getData}>
+          {!loading ? <div>Get Stats</div> : <Loader className="spinner" />}
+          </button>
         </div>
         <div className='stat-tables'>
         </div>
