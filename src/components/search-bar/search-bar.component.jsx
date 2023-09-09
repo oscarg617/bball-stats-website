@@ -29,10 +29,10 @@ const SearchBar = ({ options, placeholder, charLength, handleInput }) => {
       placeholder=''
       menuPosition='fixed'
       menuPlacement='auto'
-      maxMenuHeight={100}
+      maxMenuHeight={150}
       noOptionsMessage={noOptions}
       onChange={textChange}
-      
+      styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
     />
   )
 }

@@ -4,11 +4,12 @@ import Select from 'react-select'
 
 const ValueSelect = ({ options, placeholder, handleInput }) => {
   const _customStyles = {
+    menuPortal: (base) => ({ ...base, zIndex: 9999 }),
     control: (base, state) => ({
       ...base,
       boxShadow: 'none',
       //   minWidth: '242px',
-      zIndex: 9999,
+      zIndex: 9998,
       border: '1px solid lightgray', // default border color
       '&:hover': { borderColor: 'gray' } // border style on hover
     }),
@@ -33,6 +34,7 @@ const ValueSelect = ({ options, placeholder, handleInput }) => {
       styles={_customStyles}
       options={options}
       placeholder=''
+      // maxMenuHeight={100}
       menuPosition='fixed'
       menuPlacement='auto'
       onChange={handleInput}
